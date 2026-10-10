@@ -23,7 +23,7 @@ input,select{font:inherit;color:var(--tx);background:var(--bg);border:1px solid 
 #pad{position:fixed;inset:0;background:var(--bg);z-index:9;display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 10px) 10px calc(env(safe-area-inset-bottom,0px) + 10px)}#pad[hidden]{display:none}
 #cv{flex:1;width:100%;background:#fff;border:2px dashed var(--br);border-radius:12px;touch-action:none}[hidden]{display:none!important}
 </style></head><body><main>
-<h1>Alta PYME Omint <small style="font-weight:400;font-size:12px;color:var(--mu)">v3.1</small></h1><p class="n">Cargá los datos una sola vez: se completan los 7 formularios (11 páginas). Los campos con * son obligatorios.</p>
+<h1>Alta PYME Omint <small style="font-weight:400;font-size:12px;color:var(--mu)">v3.2</small></h1><p class="n">Cargá los datos una sola vez: se completan los 7 formularios (11 páginas). Los campos con * son obligatorios.</p>
 <section><h2>1 · Empresa</h2><div id="s-emp"></div></section>
 <section><h2>2 · Quién firma por la empresa y trámite</h2><div id="s-ctl"></div></section>
 <section><h2>3 · Titular y familiares</h2><div id="plist"></div></section>
@@ -85,7 +85,7 @@ const R={
 };
 // Lugares de firma por rol: [página,[x,y,ancho,alto]]
 const SG={
- emp:[[1,[52,80,150,34]],[2,[62,327,150,22]],[3,[115,222,160,34]],[4,[100,552,150,32]],[7,[72,203,150,24]],[9,[170,803,170,32]],[9,[236,120,160,26]]],
+ emp:[[1,[52,80,150,34]],[2,[62,327,150,22]],[3,[115,222,160,34]],[4,[100,474,150,32]],[7,[72,203,150,24]],[9,[170,803,170,32]],[9,[236,120,160,26]]],
  cta:[[2,[284,327,150,22]]],
  tit:[[10,[52,16,190,38]],[11,[236,54,150,21]]]
 };
@@ -102,7 +102,7 @@ const DJS=[['Texto10','Texto11','Texto20','Texto21','Texto22'],['Texto12','Texto
 const OBS=[['TextoP0','TextoB0','TextoE1','Texto51'],['TextoP1','TextoB1','TextoE2','Texto52'],['TextoP2','TextoB2','TextoE3','Texto53'],['TextoP3','TextoB3','TextoE4','Texto44']];
 const CLEAR=['comision','Código de área','Código de área_3'];
 const COMB={'22':22,'CBU':22,'21':13};
-const TX=[[2,64,304,8,'rNom'],[2,286,304,8,'cuentaNom'],[4,152,755,9,'fecha'],[4,333,568,8,'rNom'],[4,475,568,8,'rCargo'],[3,362,224,8,'rNom'],[9,420,127,8,'rNom']];
+const TX=[[2,64,304,8,'rNom'],[2,286,304,8,'cuentaNom'],[4,152,755,9,'fecha'],[4,333,478,8,'rNom'],[4,475,478,8,'rCargo'],[3,362,224,8,'rNom'],[9,420,127,8,'rNom']];
 const PRN=['PRECIO','PRECIO_1','PRECIO_3','PRECIO_4','PRECIO_5','PRECIO_6','PRECIO_7'];
 
 function mapData(d){
