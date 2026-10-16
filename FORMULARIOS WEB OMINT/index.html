@@ -23,7 +23,7 @@ input,select{font:inherit;color:var(--tx);background:var(--bg);border:1px solid 
 #pad{position:fixed;inset:0;background:var(--bg);z-index:9;display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 10px) 10px calc(env(safe-area-inset-bottom,0px) + 10px)}#pad[hidden]{display:none}
 #cv{flex:1;width:100%;background:#fff;border:2px dashed var(--br);border-radius:12px;touch-action:none}[hidden]{display:none!important}
 </style></head><body><main>
-<h1>Alta PYME Omint <small style="font-weight:400;font-size:12px;color:var(--mu)">v3.2</small></h1><p class="n">Cargá los datos una sola vez: se completan los 7 formularios (11 páginas). Los campos con * son obligatorios.</p>
+<h1>Alta PYME Omint <small style="font-weight:400;font-size:12px;color:var(--mu)">v3.3</small></h1><p class="n">Cargá los datos una sola vez: se completan los 7 formularios (11 páginas). Los campos con * son obligatorios.</p>
 <section><h2>1 · Empresa</h2><div id="s-emp"></div></section>
 <section><h2>2 · Quién firma por la empresa y trámite</h2><div id="s-ctl"></div></section>
 <section><h2>3 · Titular y familiares</h2><div id="plist"></div></section>
@@ -77,7 +77,7 @@ const R={
  rec:{SI:[8,[140,151,149,159]],NO:[8,[177,150,185,158]]},
  reg:{SI:[8,[296,151,304,159]],NO:[8,[332,150,341,158]]},
  pago1:{empresa:[9,[36,924,44,932]],recibo:[9,[99,924,107,932]],ticket:[9,[99,913,107,921]]},
- linea:{'MI DOC':[10,[180,689,190,697]],'GÉNESIS':[10,[240,689,249,698]],'GLOBAL':[10,[304,689,313,697]],'CLÁSICO':[10,[365,689,374,697]],'PREMIUM':[10,[427,689,435,697]],'COMUNIDAD':[10,[490,689,499,698]]},
+ linea:{'MI DOC':[10,[152,689,161,697]],'GÉNESIS':[10,[208,689,217,697]],'GLOBAL':[10,[268,689,277,697]],'CLÁSICO':[10,[394,689,402,697]],'PREMIUM':[10,[451,689,460,697]],'COMUNIDAD':[10,[508,689,517,697]]},
  medio:{cbu:[2,[87,657,101,669]],tarjeta:[2,[170,657,183,669]]},
  deb8:[8,[33,66,41,74]],
  marca:{Mastercard:[2,[126,499,140,512]],Visa:[2,[168,500,182,512]],'American Express':[2,[251,500,265,512]]},
@@ -87,10 +87,10 @@ const R={
 const SG={
  emp:[[1,[52,80,150,34]],[2,[62,327,150,22]],[3,[115,222,160,34]],[4,[100,474,150,32]],[7,[72,203,150,24]],[9,[170,803,170,32]],[9,[236,120,160,26]]],
  cta:[[2,[284,327,150,22]]],
- tit:[[10,[52,16,190,38]],[11,[236,54,150,21]]]
+ tit:[[10,[60,20,170,32]],[11,[236,54,150,21]]]
 };
-R.lineaOld={'GÉNESIS':[10,[279,422,290,432]],'GLOBAL':[10,[354,422,365,432]],'CLÁSICO':[10,[425,421,435,431]]};
-R.oa={'MI DOC':[10,[175,214,183,222]],'GÉNESIS':[10,[234,214,242,222]],'GLOBAL':[10,[295,214,304,222]],'CLÁSICO':[10,[357,214,366,222]],'PREMIUM':[10,[419,213,428,223]],'COMUNIDAD':[10,[482,214,491,222]]};
+R.lineaOld={'GÉNESIS':[10,[243,421,254,432]],'GLOBAL':[10,[318,421,329,432]],'CLÁSICO':[10,[389,421,399,432]],'COMUNIDAD':[10,[459,422,468,431]]};
+R.oa={'MI DOC':[10,[216,214,225,223]],'GÉNESIS':[10,[272,214,281,223]],'GLOBAL':[10,[330,214,339,223]],'CLÁSICO':[10,[389,214,398,223]],'PREMIUM':[10,[448,214,456,223]]};
 R.pmo={os:[8,[501,254,510,262]],omint:[8,[545,254,553,262]]};
 const fDate=s=>{const m=String(s||'').split('-');return m.length==3?m[2]+'/'+m[1]+'/'+m[0]:''};
 const DEP=[
@@ -102,7 +102,7 @@ const DJS=[['Texto10','Texto11','Texto20','Texto21','Texto22'],['Texto12','Texto
 const OBS=[['TextoP0','TextoB0','TextoE1','Texto51'],['TextoP1','TextoB1','TextoE2','Texto52'],['TextoP2','TextoB2','TextoE3','Texto53'],['TextoP3','TextoB3','TextoE4','Texto44']];
 const CLEAR=['comision','Código de área','Código de área_3'];
 const COMB={'22':22,'CBU':22,'21':13};
-const TX=[[2,64,304,8,'rNom'],[2,286,304,8,'cuentaNom'],[4,152,755,9,'fecha'],[4,333,478,8,'rNom'],[4,475,478,8,'rCargo'],[3,362,224,8,'rNom'],[9,420,127,8,'rNom']];
+const TX=[[2,64,304,8,'rNom'],[2,286,304,8,'cuentaNom'],[4,152,755,9,'fecha'],[4,333,478,8,'rNom'],[4,475,478,8,'rCargo'],[3,362,224,8,'rNom'],[9,420,127,8,'rNom'],[10,290,22,10,'tit']];
 const PRN=['PRECIO','PRECIO_1','PRECIO_3','PRECIO_4','PRECIO_5','PRECIO_6','PRECIO_7'];
 
 function mapData(d){
@@ -147,7 +147,7 @@ function mapData(d){
  (d.pr||[]).forEach((v,i)=>t(PRN[i],v));t('Observaciones',d.obsSol);
  t('CódigoRow1',d.pCod);t('PROMOTOR',d.pNom);
  // DJS
- t('DJS_dom',d.jDom);t('djs_tel',d.jTel);t('Aclaracion_djs',P[0].ap&&(P[0].nom+' '+P[0].ap));t('undefined_8',P[0].ap&&(P[0].nom+' '+P[0].ap));
+ t('DJS_dom',d.jDom);t('djs_tel',d.jTel);t('Aclaracion_djs',P[0].ap&&(P[0].nom+' '+P[0].ap));
  (d.obs||[]).forEach((o,i)=>o&&o.forEach((v,j)=>t(OBS[i][j],v)));
  return{T,M};
 }
@@ -168,7 +168,7 @@ async function buildPdf(bytes,d,sigs,flat){
  try{form.flatten()}catch(e){miss.push('flatten:'+e.message)}
  for(const [p,[x0,y0,x1,y1]] of M)pg[p-1].drawText('X',{x:(x0+x1)/2-3.2,y:(y0+y1)/2-3.4,size:9,font:hb,color:rgb(0,0,0)});
  const fe=[d.dia,d.mes,d.anio].join('/');
- for(const [p,x,y,sz,k] of TX){const v=U(k=='fecha'?fe:d[k]).replace(/[^\x20-\xFF]/g,'');if(v)pg[p-1].drawText(v,{x,y,size:sz,font:hf,color:rgb(0,0,0)})}
+ for(const [p,x,y,sz,k] of TX){const v=U(k=='fecha'?fe:k=='tit'?[d.p[0].nom,d.p[0].ap].filter(Boolean).join(' '):d[k]).replace(/[^\x20-\xFF]/g,'');if(v)pg[p-1].drawText(v,{x,y,size:sz,font:hf,color:rgb(0,0,0)})}
  for(const role in sigs){if(!sigs[role])continue;const img=await doc.embedPng(sigs[role]);
   for(const [p,[x,y,w,h]] of SG[role]){const s=Math.min(w/img.width,h/img.height),iw=img.width*s,ih=img.height*s;
    pg[p-1].drawImage(img,{x:x+(w-iw)/2,y:y+(h-ih)/2,width:iw,height:ih})}}
@@ -245,9 +245,10 @@ function check(){const E=[],W=[],B=new Set(),g=k=>String(gp(d,k)??'').trim(),bad
  if(d.medio=='cbu'){if(!cbuOk(d.cbu))bad('cbu','CBU inválido (22 dígitos con verificación)')}else{if(!d.tMarca)bad('tMarca','Falta la marca de tarjeta');if(!luhn(d.tNro))bad('tNro','Número de tarjeta inválido');if(!d.tMM||!d.tAA){E.push('Falta vencimiento de tarjeta');B.add('tMM');B.add('tAA')}r('tNom','Nombre en la tarjeta')}
  if(d.medio=='cbu')r('banco','Banco');if(!cuitOk(d.cuitCta))bad('cuitCta','CUIL/CUIT del titular de la cuenta inválido');
  if(d.otraCta)r('cuentaNom','Nombre del titular de la cuenta');
+ if(/^4500_25/i.test(String(d.plan||'').trim()))bad('plan','El plan OMINT VOS (4500_25…) no está disponible en esta herramienta: ese alta se completa a mano');
  if(!d.djsOk)E.push('Confirmá que el cliente declaró las respuestas de la DJS (sección 6)');
  if(!d.linea)W.push('No se eligió la línea del plan: la hoja de Tiempos de espera quedará sin tildar');
- if(d.tabla=='old'&&d.linea&&!['GÉNESIS','GLOBAL','CLÁSICO'].includes(d.linea))W.push('Los planes _20 solo existen en GÉNESIS, GLOBAL y CLÁSICO');
+ if(d.tabla=='old'&&d.linea&&!['GÉNESIS','GLOBAL','CLÁSICO','COMUNIDAD'].includes(d.linea))W.push('La tabla de planes _20 solo tiene GÉNESIS, GLOBAL, CLÁSICO y COMUNIDAD');
  const sg=[['emp','el responsable de la empresa'],['tit','el titular']].concat(d.otraCta?[['cta','el titular de la cuenta']]:[]),hv=sg.filter(([k])=>S[k]);
  if(hv.length&&hv.length<sg.length)W.push('Firma en pantalla incompleta: faltan '+sg.filter(([k])=>!S[k]).map(x=>x[1]).join(', '));
  return{E,W,B}}
@@ -285,13 +286,13 @@ async function loadPrices(){const S=[async()=>{const r=await fetch('cotizador.xl
 async function cargarXlsx(f){if(!f)return;try{const buf=await f.arrayBuffer(),planes=readPrices(await xlsxRows(buf));PR={planes,src:'lista cargada en este dispositivo',fecha:new Date(f.lastModified).toLocaleDateString('es-AR'),err:''};
  try{localStorage.setItem('omint_xlsx',JSON.stringify({b:btoa(String.fromCharCode(...new Uint8Array(buf))),f:PR.fecha}))}catch(_){}rPlan()}catch(e){alert('No se pudo leer el Excel: '+e.message)}}
 async function getPdf(){try{const r=await fetch('formulario_omint.pdf',{cache:'no-store'});if(r.ok){const b=new Uint8Array(await r.arrayBuffer());if(b[0]==0x25)return b}}catch(e){}if(typeof PDF64!='undefined'&&PDF64)return b64(PDF64);throw Error('no se encontró formulario_omint.pdf junto a la página')}
-function lineaDe(p){p=String(p||'').toUpperCase();return/^MIDOC/.test(p)?'MI DOC':/^(1500|2500|2600)_/.test(p)?'GÉNESIS':/^(4021|4500)_/.test(p)?'GLOBAL':/^6500_/.test(p)?'CLÁSICO':/^8500_/.test(p)?'PREMIUM':/^COMUNIDAD/.test(p)?'COMUNIDAD':''}
-function autoLinea(){const l=lineaDe(d.plan);if(l){d.linea=l;d.tabla=/_20$/i.test(d.plan.trim())?'old':'new'}}
+function lineaDe(p){p=String(p||'').toUpperCase().trim();if(/^4500_25/.test(p))return'';return/^MIDOC/.test(p)?'MI DOC':/^(1500|2500|2600)_/.test(p)?'GÉNESIS':/^(4021|4500)_/.test(p)?'GLOBAL':/^6500_/.test(p)?'CLÁSICO':/^8500_/.test(p)?'PREMIUM':/^COMUNIDAD/.test(p)?'COMUNIDAD':''}
+function autoLinea(){const l=lineaDe(d.plan);if(l){d.linea=l;d.tabla=/_20$|^COMUNIDAD_CC$/i.test(d.plan.trim())?'old':'new'}}
 function syncSel(){['linea','tabla'].forEach(k=>{const e=document.querySelector(`[data-k="${k}"]`);if(e)e.value=d[k]})}
 function applyPlan(v){d.planSel=v;d.pr=Array(7).fill('');d.linea='';d.tabla='new';if(v&&v!=='__otro'){const p=PR.planes.find(x=>x.n==v);if(p){d.plan=v;d.pr=p.v.map(x=>x==null?'':String(x))}}else d.plan='';autoLinea();rPlan()}
-function rPlan(){const opt=[['','Elegir plan…'],...PR.planes.map(p=>[p.n,'Plan '+p.n]),['__otro','Otro (interior u otro plan: completar a mano)']];
+function rPlan(){const opt=[['','Elegir plan…'],...PR.planes.filter(p=>!/^4500_25/i.test(p.n)).map(p=>[p.n,'Plan '+p.n]),['__otro','Otro (interior u otro plan: completar a mano)']];
  $('s-plan').innerHTML=G(F('planSel','Plan',{s:opt,w:'w2'})+F('precio','Cuota mensual $ (sin IVA)',{r:1,m:'decimal',w:'w2'}))+`<div data-show="planSel=__otro">${G(F('plan','Código del plan (ej. 4500_24)',{r:1,w:'w2'}))}</div>`
- +G(F('linea','Línea de plan (Tiempos de espera y OA)',{s:LINEAS,w:'w2'})+F('tabla','Tabla de tiempos de espera',{s:[['new','Planes nuevos (21 a 25)'],['old','Planes _20']],w:'w2'}))
+ +G(F('linea','Línea de plan (Tiempos de espera y OA)',{s:LINEAS,w:'w2'})+F('tabla','Tabla de tiempos de espera',{s:[['new','Planes nuevos (21 a 25)'],['old','Planes _20 y COMUNIDAD_CC']],w:'w2'}))
  +`<p class="n">${PR.err?'⚠ No se pudo leer la lista de precios ('+esc(PR.err)+'). Usá "Otro" y completá a mano.':'Lista AMBA: '+esc(PR.src)+(PR.fecha?' · modificada '+PR.fecha:'')+'. Para el interior elegí "Otro" y completá a mano.'} <button type="button" class="lk" id="updx">Actualizar lista (Excel)</button></p><input type="file" id="xf" accept=".xlsx" hidden>`
  +'<h3>Precios por edad</h3>'+G(HN.map((l,i)=>F('pr.'+i,l,{m:'decimal'})).join(''))+G(F('obsSol','Observaciones',{w:'w2'}));show()}
 function rD(){const el=$('djsres');if(!el)return;const L=d.p.map((x,i)=>{const s=x.a.map((v,q)=>v=='SI'?q+1:0).filter(Boolean);return s.length?`<li><b>${esc(nomP(i))}</b>: SI en preguntas ${s.join(', ')}</li>`:''}).join('');
